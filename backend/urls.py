@@ -18,7 +18,6 @@ from django.urls import include, path
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-
-    # urls provided by the DRF
-    path('api-auth/', include('rest_framework.urls'))
+    # Delegate all auth calls to authtokens urls
+    path('auth/', include('authtokens.urls', namespace='authtokens'))
 ]
