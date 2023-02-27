@@ -43,6 +43,7 @@ INSTALLED_APPS = [  # Provides which apps are available as a resource to it
     'rest_framework',
     'authtokens.apps.AuthtokensConfig',
     'rest_framework_simplejwt.token_blacklist',
+    'users.apps.UsersConfig'
 ]
 
 MIDDLEWARE = [
@@ -81,8 +82,8 @@ WSGI_APPLICATION = 'backend.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'PHT',  # name of the DB
-        'USER': 'PHT',
+        'NAME': 'pht',  # name of the DB
+        'USER': 'pht',
         'PASSWORD': 'pht',
         'HOST': 'localhost',
         'PORT': '5432'
@@ -195,3 +196,5 @@ SIMPLE_JWT = {
     "SLIDING_TOKEN_REFRESH_SERIALIZER":
     "rest_framework_simplejwt.serializers.TokenRefreshSlidingSerializer",
 }
+
+AUTH_USER_MODEL = 'users.User'
