@@ -1,5 +1,5 @@
 import React from "react";
-import Login from "./components/LoginForm";
+import Login from "../components/LoginForm";
 
 function App() {
   const login = async (email, password) => {

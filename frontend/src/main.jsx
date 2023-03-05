@@ -1,8 +1,21 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
-import App from './App'
-import LoginForm from "./components/LoginForm";
-import './index.css'
+import { RouterProvider, createBrowserRouter } from "react-router-dom";
+import App from "./routes/App";
+import WeightTracker from "./components/WeightTracker";
+import "./index.css";
+import RootLayout from "./routes/RootLayout";
+
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <RootLayout></RootLayout>,
+    children: [
+      { path: "login", element: <App></App> },
+      { path: "weighttracker", element: <WeightTracker></WeightTracker> },
+    ],
+  },
+]);
 
 // document.getElementById() is vanilla js not react
 ReactDOM.createRoot(document.getElementById("root")).render(
@@ -13,6 +26,6 @@ ReactDOM.createRoot(document.getElementById("root")).render(
   // Components return jsx code
   // Components can be used in other components
   <React.StrictMode>
-    <App></App>
+    <RouterProvider router={router} />
   </React.StrictMode>
 );

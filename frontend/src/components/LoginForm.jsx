@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+// The below import also imports all the "general" styles for eg. button, label etc.
 import styles from "./LoginForm.module.css";
 
 function Login({ login }) {
@@ -21,7 +22,7 @@ function Login({ login }) {
       setShowCelebration(true);
       setTimeout(() => {
         // TODO Use routing instead?
-        window.location.href = "/dashboard";
+        window.location.href = "/weighttracker";
       }, 3000);
     } catch (error) {
       setError("Invalid email or password");
