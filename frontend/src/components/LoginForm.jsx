@@ -31,30 +31,35 @@ function Login({ login }) {
   };
 
   return (
-    <div className="Login">
+    <div className={styles.Login}>
       <h2>Login to your account</h2>
-      {error && <div className="error">{error}</div>}
+      {error && <div className={styles.error}>{error}</div>}
       <form onSubmit={handleSubmit}>
-        <label>
-          Email:
-          <input
-            type="email"
-            value={emailInput}
-            onChange={(event) => setEmail(event.target.value)}
-            disabled={isLoggingIn}
-            required
-          />
-        </label>
-        <label>
-          Password:
-          <input
-            type="password"
-            value={passwordInput}
-            onChange={(event) => setPassword(event.target.value)}
-            disabled={isLoggingIn}
-            required
-          />
-        </label>
+        <div className={styles.formGroup}>
+          <label>
+            Email:
+            <input
+              type="email"
+              value={emailInput}
+              onChange={(event) => setEmail(event.target.value)}
+              disabled={isLoggingIn}
+              required
+            />
+          </label>
+        </div>
+        <div className={styles.formGroup}>
+          <label>
+            Password:
+            <input
+              type="password"
+              value={passwordInput}
+              onChange={(event) => setPassword(event.target.value)}
+              disabled={isLoggingIn}
+              required
+            />
+          </label>
+        </div>
+
         <button type="submit" disabled={isLoggingIn}>
           {isLoggingIn ? "Logging in..." : "Log in"}
         </button>
