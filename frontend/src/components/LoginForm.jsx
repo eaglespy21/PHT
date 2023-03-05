@@ -1,61 +1,74 @@
 import React, { useState } from "react";
 import styles from "./LoginForm.module.css";
 
-const LoginForm = () => {
+function Login({ login }) {
   const [emailInput, setEmail] = useState("");
   const [passwordInput, setPassword] = useState("");
+  const [isLoggingIn, setIsLoggingIn] = useState(false);
+  const [error, setError] = useState(null);
+  const [showCelebration, setShowCelebration] = useState(false);
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
-    console.log(`Email: ${emailInput} Password: ${passwordInput}`);
-    // Send login request to server
-    fetch("http://127.0.0.1:8000/auth/", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        email: emailInput,
-        password: passwordInput,
-      }),
-    })
-      .then((response) => response.json())
-      .then((data) => {
-        const accessToken = data.access_token;
-        const refreshToken = data.refresh_token;
-        console.log("Login successful!");
-      })
-      .catch((error) => {
-        console.error("Login unsuccessful", error);
-      });
+    setIsLoggingIn(true);
+    setError(null);
+    try {
+      const { access_token, refresh_token } = await login(
+        emailInput,
+        passwordInput
+      );
+      // Login successful
+      setShowCelebration(true);
+      setTimeout(() => {
+        // TODO Use routing instead?
+        window.location.href = "/dashboard";
+      }, 3000);
+    } catch (error) {
+      setError("Invalid email or password");
+    } finally {
+      setIsLoggingIn(false);
+    }
   };
 
   return (
-    <form className={styles.loginForm} onSubmit={handleSubmit}>
-      <h2>Login</h2>
-      <div className={styles.formGroup}>
-        <label htmlFor="email">Email</label>
-        <input
-          type="email"
-          id="email"
-          value={emailInput}
-          onChange={(e) => setEmail(e.target.value)}
-          required
-        />
-      </div>
-      <div className={styles.formGroup}>
-        <label htmlFor="password">Password</label>
-        <input
-          type="password"
-          id="password"
-          value={passwordInput}
-          onChange={(e) => setPassword(e.target.value)}
-          required
-        />
-      </div>
-      <button type="submit">Log in</button>
-    </form>
+    <div className="Login">
+      <h2>Login to your account</h2>
+      {error && <div className="error">{error}</div>}
+      <form onSubmit={handleSubmit}>
+        <label>
+          Email:
+          <input
+            type="email"
+            value={emailInput}
+            onChange={(event) => setEmail(event.target.value)}
+            disabled={isLoggingIn}
+            required
+          />
+        </label>
+        <label>
+          Password:
+          <input
+            type="password"
+            value={passwordInput}
+            onChange={(event) => setPassword(event.target.value)}
+            disabled={isLoggingIn}
+            required
+          />
+        </label>
+        <button type="submit" disabled={isLoggingIn}>
+          {isLoggingIn ? "Logging in..." : "Log in"}
+        </button>
+      </form>
+      {showCelebration && (
+        <div className="Celebration">
+          <span role="img" aria-label="Celebration">
+            🎉
+          </span>
+          <p>Login successful! Redirecting to dashboard...</p>
+        </div>
+      )}
+    </div>
   );
-};
+}
 
-export default LoginForm;
+export default Login;

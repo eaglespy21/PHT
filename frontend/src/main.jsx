@@ -13,6 +13,6 @@ ReactDOM.createRoot(document.getElementById("root")).render(
   // Components return jsx code
   // Components can be used in other components
   <React.StrictMode>
-    <LoginForm></LoginForm>
+    <App></App>
   </React.StrictMode>
 );
