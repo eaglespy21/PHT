@@ -6,4 +6,4 @@ class WeightMeasurementSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = WeightMeasurement
-        fields = ['user', 'weight', 'measurement_date']
+        fields = ['id', 'user', 'weight', 'measurement_date']
