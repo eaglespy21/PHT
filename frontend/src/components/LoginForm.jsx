@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 // The below import also imports all the "general" styles for eg. button, label etc.
 import styles from "./LoginForm.module.css";
 
@@ -8,6 +9,7 @@ function Login({ login }) {
   const [isLoggingIn, setIsLoggingIn] = useState(false);
   const [error, setError] = useState(null);
   const [showCelebration, setShowCelebration] = useState(false);
+  const navigate = useNavigate();
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -20,10 +22,9 @@ function Login({ login }) {
       );
       // Login successful
       setShowCelebration(true);
-      setTimeout(() => {
-        // TODO Use routing instead?
-        window.location.href = "/weighttracker";
-      }, 3000);
+      // This only loads the new component, doesn't refresh the whole web page-
+      // unlike window.location.href
+      navigate("/weighttracker");
     } catch (error) {
       setError("Invalid email or password");
     } finally {
