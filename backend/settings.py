@@ -43,7 +43,8 @@ INSTALLED_APPS = [  # Provides which apps are available as a resource to it
     'rest_framework',
     'authtokens.apps.AuthtokensConfig',
     'rest_framework_simplejwt.token_blacklist',
-    'users.apps.UsersConfig'
+    'users.apps.UsersConfig',
+    'weights.apps.WeightsConfig'
 ]
 
 MIDDLEWARE = [

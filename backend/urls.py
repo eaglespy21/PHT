@@ -21,4 +21,5 @@ urlpatterns = [
     # Delegate all auth calls to authtokens urls
     path('auth/', include('authtokens.urls', namespace='authtokens')),
     path('users/', include('users.urls', namespace="users")),
+    path('weights/', include('weights.urls', namespace='weights'))
 ]
