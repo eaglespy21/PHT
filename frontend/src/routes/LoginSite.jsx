@@ -1,7 +1,7 @@
 import React from "react";
 import Login from "../components/LoginForm";
 
-function App() {
+function LoginSite() {
   const login = async (email, password) => {
     // Call the API to log in with the email and password and return the access token and refresh token
     const response = await fetch("http://127.0.0.1:8000/auth/", {
@@ -27,4 +27,4 @@ function App() {
   );
 }
 
-export default App;
+export default LoginSite;

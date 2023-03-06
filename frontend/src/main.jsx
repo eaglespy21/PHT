@@ -1,7 +1,7 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
-import App from "./routes/App";
+import LoginSite from "./routes/LoginSite";
 import WeightTracker from "./components/WeightTracker";
 import "./index.css";
 import RootLayout from "./routes/RootLayout";
@@ -11,7 +11,7 @@ const router = createBrowserRouter([
     path: "/",
     element: <RootLayout></RootLayout>,
     children: [
-      { path: "login", element: <App></App> },
+      { path: "login", element: <LoginSite></LoginSite> },
       { path: "weighttracker", element: <WeightTracker></WeightTracker> },
     ],
   },
